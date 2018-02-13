@@ -1,0 +1,108 @@
+/* html types *****************************************************************/
+body {
+   margin: 0;
+}
+a {
+   color: #b71234;
+   text-decoration: none;
+}
+a:hover {
+   text-decoration: underline;
+}
+code,
+pre {
+   background: #eee;
+}
+code {
+   padding: 2px 4px;
+   vertical-align: text-bottom;
+}
+pre {
+   border-left: 2px solid #b71234;
+   padding: 1em;
+}
+dt {
+   color: #425160;
+   font-weight: bold;
+}
+h1, h2, h3, h4 {
+   color: #425160;
+}
+h1 {
+   border-bottom: 2px solid #425160;
+}
+#header {
+}
+#sidebar {
+   background-color: #425160;
+   position: fixed;
+   width: 300px;
+   top: 0;
+   bottom: 0;
+   display: inline-block;
+   overflow-y: scroll;
+}
+#zdflogo {
+   margin-top: 1em;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 1em;
+   width: 80%;
+}
+#zdflogomain {
+   margin-top: 1em;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 1em;
+   width: 40%;
+}
+#searchfield input {
+   background-color: #425160;
+   border: 0px;
+   border-top: 1px solid #b71234;
+   border-bottom: 1px solid #b71234;
+   box-sizing: border-box;
+   color: white;
+   font-family: "Courier New", Monospace;
+   font-size: 1em;
+   height: 3.125em;
+   text-align: center;
+   width: 100%;
+}
+
+/* footer *********************************************************************/
+#footer {
+   border-top: 10px solid #b71234;
+   width: 100%;
+   padding-top: 10px;
+   display: block;
+   text-align: center;
+}
+.footer-column {
+	width: 200px;
+	display:inline-block;
+   vertical-align:top;
+   text-align: left;
+}
+.footer-column h3 {
+   padding-left: 1em;
+   margin-bottom: 0px;
+}
+.footer-column ul {
+   margin-top = 0px;
+   float: left;
+   border-left: 2px solid #425160;
+   list-style-type: none;
+}
+
+/* expcol *******************************************************************+*/
+.expcol-collapsed .expcol-clickbox:before {
+   content: "+ ";
+}
+.expcol-expanded .expcol-clickbox:before {
+   content: "- ";
+}
+.expcol-collapsed .expcol-content {
+   display: none;
+}
+

@@ -1,0 +1,21 @@
+= luazdf.aiq.dk
+
+Script and templates to generate the website for LuaZDF.
+
+== How To Use
+
+=== Generate Website
+
+[source,shell]
+----
+$ lua mkpage
+----
+
+=== Clean Up
+
+[source,shell]
+----
+$ rm -rf fn
+$ rm *.html
+----
+

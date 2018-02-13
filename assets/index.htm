@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuaZDF</title>
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml" sizes="any"/>
+<link rel="stylesheet" href="assets/zdf.css">
+<style>
+.toc-container {
+   font-family: "Courier New", Monospace;
+}
+.toc-container h2 {
+   color: #b71234;
+   margin-left: 5%;
+}
+.toc-container .mod-text {
+   margin-left: 2%;
+}
+.toc-container ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   background-color: #425160;
+}
+.toc-container li {
+   float: left;
+}
+.toc-container li a {
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 16px;
+   text-decoration: none;
+}
+.toc-container li a:hover {
+   background-color: #b71234;
+}
+.expcol-collapsed .expcol-clickbox:before {
+   content: "▼ ";
+}
+.expcol-expanded .expcol-clickbox:before {
+   content: "▲ ";
+}
+</style>
+<script type="text/javascript">
+function expcolToggle( elem ) {
+   elem.parentNode.classList.toggle( "expcol-collapsed" )
+   elem.parentNode.classList.toggle( "expcol-expanded" )
+}
+
+function filter() {
+   var query = document.getElementById( "searchfield" ).getElementsByTagName( "input" )[ 0 ].value
+
+   var modules = document.getElementsByClassName( "toc-module" )
+   for ( var i = 0; i < modules.length; i++ ) {
+      var mod = modules[ i ]
+      var functions = mod.getElementsByClassName( "func-link" )
+      var countNone = 0
+      for ( var j = 0; j < functions.length; j++ ) {
+         var func = functions[ j ]
+         if ( func.text.includes( query ) ) {
+            func.parentNode.style.display = "block"
+         }
+         else {
+            func.parentNode.style.display = "none" // li element
+            countNone++
+         }
+      }
+      if ( countNone == functions.length )
+         mod.style.display = "none" // toc-module element
+      else
+         mod.style.display = "block"
+   }
+}
+</script>
+</head>
+
+<body>
+<div id="header">
+   <div id="zdflogomain"><a href="index.html">{{&LOGO}}</a></div>
+   <div id="searchfield"><form>
+      <input type="text" onkeyup="filter()" placeholder="search" required>
+   </form></div>
+</div>
+<div class="toc-container">
+   <div>
+      {{#MODULES}}
+      <div class="toc-module expcol-collapsed">
+      <h2 class="expcol-clickbox" onclick="expcolToggle( this )">{{NAME}}</h2>
+      <div class="mod-text expcol-content">
+         {{&TEXT}}
+      </div>
+      <ul>
+         {{#FUNCTIONS}}
+         <li><a class="func-link" href="fn/{{.}}.html">{{.}}</a></li>
+         {{/FUNCTIONS}}
+      </ul>
+      </div>
+      {{/MODULES}}
+   </div>
+</div>
+{{&FOOTER}}
+</body>
+
+</html>
