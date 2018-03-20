@@ -328,6 +328,11 @@ end
 print( "lets do it" )
 
 local ztree = buildztree( "luazdf" )
+local filterpattern = "%a"
+if #arg == 1 then
+   filterpattern = arg[ 1 ]
+   print( "filterpattern: "..filterpattern )
+end
 
 logln( "build toc" )
 local indexData = {
@@ -360,6 +365,8 @@ if err then errexit( err ) end
 
 --------------------------------------------------------------------------------
 local function docPage( pageData, title, adocFile, htmlFile )
+   if not string.match( title, filterpattern ) then return end
+
    pageData.TITLE = title
    pageData.TEXT = adoctohtml( ztree.root.."/"..adocFile )
    local page = lustache:render( _f"assets/doc.htm", indexData )
@@ -372,23 +379,27 @@ docPage( indexData, "License", "LICENSE", "license.html" )
 docPage( indexData, "Readme", "README.adoc", "readme.html" )
 
 --------------------------------------------------------------------------------
-if dirhas( ".", "fn" ) then
-  res, err = rmdirtree( "fn" )
-  if err then errexit( err ) end
+if filterpattern == "%a" and dirhas( ".", "fn" ) then
+   res, err = rmdirtree( "fn" )
+   if err then errexit( err ) end
 end
 
-res, err = lfs.mkdir( "fn" )
-if err then errexit( err ) end
+if not dirhas( ".", "fn" ) then
+   res, err = lfs.mkdir( "fn" )
+   if err then errexit( err ) end
+end
 
 footerData.CONTRIBUTING = "../"..footerData.CONTRIBUTING
 footerData.LICENSE = "../"..footerData.LICENSE
 footerData.README = "../"..footerData.README
 indexData.FOOTER = lustache:render( _f"assets/footer.htm", footerData )
 for fn, mod in pairs( ztree.fn ) do
-   local html = adoctohtml( ztree.root.."/"..mod.."/"..fn.."/"..fn..".adoc" )
-   indexData.FUNCNAME = fn
-   indexData.FUNCDOC = html
-   local funcPage = lustache:render( _f"assets/function.htm", indexData )
-   local res, err = writefile( "fn/"..fn..".html", funcPage )
-   if err then errexit( err ) end
+   if string.match( fn, filterpattern ) then
+      local html = adoctohtml( ztree.root.."/"..mod.."/"..fn.."/"..fn..".adoc" )
+      indexData.FUNCNAME = fn
+      indexData.FUNCDOC = html
+      local funcPage = lustache:render( _f"assets/function.htm", indexData )
+      local res, err = writefile( "fn/"..fn..".html", funcPage )
+      if err then errexit( err ) end
+   end
 end

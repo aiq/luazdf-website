@@ -8,7 +8,17 @@ Script and templates to generate the website for LuaZDF.
 
 [source,shell]
 ----
+$ git clone https://github.com/aiq/luazdf
 $ lua mkpage
+----
+
+=== Update Single Pages
+
+It is possible to define with a Lua pattern a subset of pages.
+
+[source,shell]
+----
+$ lua mkpage <pattern>
 ----
 
 === Clean Up
