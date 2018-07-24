@@ -54,7 +54,7 @@ function expcolToggle( elem ) {
 }
 
 function filter() {
-   var query = document.getElementById( "searchfield" ).getElementsByTagName( "input" )[ 0 ].value
+   var query = document.getElementById( "filterfield" ).getElementsByTagName( "input" )[ 0 ].value
 
    var modules = document.getElementsByClassName( "toc-module" )
    for ( var i = 0; i < modules.length; i++ ) {
@@ -84,8 +84,8 @@ function filter() {
 <div id="sidebar">
    <div id="header">
       <div id="zdflogo"><a href="index.html">{{&LOGO}}</a></div>
-      <div id="searchfield"><form>
-         <input type="text" onkeyup="filter()" placeholder="search" required>
+      <div id="filterfield"><form>
+         <input type="text" onkeyup="filter()" placeholder="filter" required>
       </form></div>
    </div>
    <div class="toc-container">

@@ -56,7 +56,7 @@ h1 {
    margin-bottom: 1em;
    width: 40%;
 }
-#searchfield input {
+#filterfield input {
    background-color: #425160;
    border: 0px;
    border-top: 1px solid #b71234;
